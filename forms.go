@@ -386,7 +386,6 @@ func (g *Form) UpdateForm(form, source interface{}) {
 func (g *Form) ValidateForm(form interface{}, r *http.Request) (status bool) {
 	//загрузка данных из HTML формы
 	g.LoadForm(form, r)
-	//log.Printf("[ValidateForm] form--> %v\n", form)
 
 	//запуск механизма получение данных из формы
 	r.ParseForm()
