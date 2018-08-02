@@ -184,6 +184,22 @@ func (g *Form) atomicLoadField(t reflect.StructField, v reflect.Value, stocker *
 	return
 }
 
+//очищение формы
+func (g *Form) ClearForm(form interface{}) {
+	//проверка формы
+	t, v, stock := g.checkedForm(form)
+	switch v.Kind() {
+	case reflect.Struct:
+		for x := 0; x < v.NumField(); x ++ {
+			fu, found := g.FieldsForms[strings.ToLower(t.Field(x).Name)]
+			if found {
+				stock.Desc[t.Field(x).Name] = fu.Placeholder
+				stock.DefaultValue[t.Field(x).Name] = nil
+			}
+		}
+	}
+}
+
 //инициализация формы, вызывается всегда первой, когда используется форма
 func (g *Form) InitForm(form interface{}) {
 	//проверка формы
