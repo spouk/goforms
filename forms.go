@@ -208,6 +208,8 @@ func (g *Form) InitForm(form interface{}) {
 				//log.Printf("[goforms][error][key: %s] `u,found:= g.FieldsForms[strings.ToLower(t.Field(x).Name)]` = пустая, нет дефолтных значений\n",strings.ToLower(t.Field(x).Name))
 			}
 		}
+		//установка дефолтного флага корректности данныз в форму в false 
+		stock.ErrorValues = false
 	default:
 		log.Fatalf("[goforms][fatal error] -invalid struct form- `%v`\n", form)
 	}
