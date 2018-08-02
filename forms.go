@@ -40,6 +40,7 @@ type (
 		DefaultValue map[string]interface{} //значения для формы .stack.form.Desc.<FieldName>
 		Error        map[string]ErrorForm   // ошибка для формы .stack.form.Error.<FieldName>
 		SuccessClass map[string]string      //css класс для успешной обработки
+		ErrorValues  bool                   //флаг, показывающий валидность введенных данных в форме
 	}
 	ErrorForm struct {
 		Error      string
@@ -183,7 +184,6 @@ func (g *Form) atomicLoadField(t reflect.StructField, v reflect.Value, stocker *
 	}
 	return
 }
-
 
 //инициализация формы, вызывается всегда первой, когда используется форма
 func (g *Form) InitForm(form interface{}) {
